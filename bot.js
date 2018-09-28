@@ -45,7 +45,6 @@ client.on('message', message => {
 ////////////////////////
 //////////////////////
 client.on('message', async msg => { 
-        if(message.author.id !== "380762809945817098") return message.reply('You aren\'t the bot owner.');
 	if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
     
@@ -273,7 +272,6 @@ function play(guild, song) {
 
 
  client.on('message', message => {
-	        if(message.author.id !== "380762809945817098") return message.reply('You aren\'t the bot owner.');
      if (message.author.bot) return;
 if (message.content.startsWith(prefix + "uptime")) {
     let uptime = client.uptime;
@@ -319,7 +317,6 @@ if (message.content.startsWith(prefix + "uptime")) {
 
 
 client.on('message', message => {
-	        if(message.author.id !== "380762809945817098") return message.reply('You aren\'t the bot owner.');
     if(message.content.startsWith(prefix+'help')) {
    const embed = new Discord.RichEmbed()
 .setColor('RANDOM')
@@ -344,10 +341,13 @@ client.on('message', message => {
 }) 
 
 
-
+client.on('message', message => {
+ if(message.content.startsWith(prefix + "come")) {
+message.member.voiceChannel.join();
+}
+});
   
 client.on('message', message => {
-                                        if(message.author.id !== "380762809945817098") return message.reply('You aren\'t the bot owner.');
                         if (message.content.startsWith(prefix + "ping")) {
                             if(!message.channel.guild) return;
                             var msg = `${Date.now() - message.createdTimestamp}`
