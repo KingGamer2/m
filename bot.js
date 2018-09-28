@@ -20,6 +20,8 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
+const myID = "380762809945817098";
+
 const adminprefix = "-"
 
 const prefix = "M";
@@ -41,12 +43,11 @@ client.on('message', message => {
 
 
 
-client.on('ready', () => {                           
-client.user.setGame(`=help |=invite `,'https://www.youtube.com/kinggamer_th3');                                                                                                                                                                                                                                                                                                                                                                                                                            
-});
+
 ////////////////////////
 //////////////////////
 client.on('message', async msg => { 
+if(message.author.id !== myID) return message.reply('You aren\'t the bot owner.')
 	if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
     
@@ -274,6 +275,7 @@ function play(guild, song) {
 
 
  client.on('message', message => {
+	 if(message.author.id !== myID) return message.reply('You aren\'t the bot owner.')
      if (message.author.bot) return;
 if (message.content.startsWith(prefix + "uptime")) {
     let uptime = client.uptime;
@@ -319,6 +321,7 @@ if (message.content.startsWith(prefix + "uptime")) {
 
 
 client.on('message', message => {
+	if(message.author.id !== myID) return message.reply('You aren\'t the bot owner.')
     if(message.content.startsWith(prefix+'help')) {
    const embed = new Discord.RichEmbed()
 .setColor('RANDOM')
@@ -367,10 +370,10 @@ message.channel.send({embed:embed});
 					
 					
 client.on('message', function(message) {
-	const myID = "380762809945817098";
+		const myID = "380762809945817098";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(adminprefix + "setname")) {
-		        if(message.author.id !== myID) return;
+		        if(message.author.id !== myID) return message.reply('You aren\'t the bot owner.')
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
         client.user.setUsername(args);
         message.channel.send(':white_check_mark: Done!').then(msg => {
